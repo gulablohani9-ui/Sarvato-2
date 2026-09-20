@@ -1,18 +1,28 @@
-# Sarvatobhadra Vedic Transit — Android APK
+# Sarvatobhadra Vedic Transit Android APK
 
-यह project मौजूदा `index.html` को Android WebView app में पैक करता है।
+## GitHub upload structure
 
-## GitHub से APK बनाने का तरीका
+Upload the **contents of this folder** to the repository ROOT. Do not put this whole folder inside another folder.
 
-1. इस पूरे folder को GitHub repository में upload करें।
-2. GitHub में **Actions** खोलें।
-3. `Build Android APK` workflow चलाएँ, या `main/master` पर push करें।
-4. Workflow पूरा होने पर **Artifacts** में `sarvatobhadra-debug-apk` मिलेगा।
-5. ZIP artifact डाउनलोड करके उसमें से `app-debug.apk` फोन में install करें।
+Required paths at repository root:
 
-## App में
-- Live Swiss Ephemeris API के लिए Internet permission
-- GPS/Browser geolocation के लिए Android location permission
-- मौजूदा place autocomplete और transit HTML उसी रूप में रखा गया है।
+- `build.gradle`
+- `settings.gradle`
+- `app/build.gradle`
+- `app/src/main/AndroidManifest.xml`
+- `app/src/main/java/.../MainActivity.java`
+- `app/src/main/assets/index.html`
+- `.github/workflows/android.yml`
 
-ध्यान दें: APK का calculation data external Swiss Ephemeris API और Nominatim services से आता है; Android app में HTML embedded है, इसलिए GitHub Pages की जरूरत APK चलाने के लिए नहीं है।
+**Important:** `app/build.gradle` must be directly inside `app/`, NOT inside `app/src/main/`.
+
+## GitHub Actions
+
+Open **Actions → Build Android APK** and run it. The run should show:
+
+1. Verify project files
+2. Verify Android tasks
+3. Build debug APK
+4. Upload APK
+
+If the first two steps do not appear, the new workflow file has not been committed or the old workflow is being run.
